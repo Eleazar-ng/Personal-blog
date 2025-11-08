@@ -11,13 +11,12 @@ const PORT = process.env.PORT || 8087;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+//Middleware
+app.use(express.static('public'));
+
 // Set EJS as templating engine
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
-
-// Data directory
-const DATA_DIR = path.join(__dirname, 'data');
-const ARTICLES_DIR = path.join(DATA_DIR, 'articles');
 
 app.use(Routers)
 

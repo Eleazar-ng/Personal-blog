@@ -1,10 +1,13 @@
+<%- include('../shared/header', { title: 'Home'}) %>
+<main class="container">
+  <h1>Personal Blog</h1>
 
-<!doctype>
-<html>
-  <head>
+  <% if (articles.length === 0) { %>
+    <div class="article-card">
+      <p>No articles yet.</p>
+    </div>
+  <% } else { %>
 
-  </head>
-  <body>
-    <p>Hello World!</p>
-  </body>
-</html>
+  <% } %>
+</main>
+<%- include('../shared/footer', { currentYear: year }) %>
