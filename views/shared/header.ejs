@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= typeof title !== 'undefined' ? title + ' - ' : '' %>My Personal Blog</title>
+     <link rel="stylesheet" href="/css/style.css" type="text/css">
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <nav>
+          <div class="logo">My Blog</div>
+            <ul class="nav-links">
+              <li><a href="/">Home</a></li>
+              <% if (typeof isAuthenticated !== 'undefined' && isAuthenticated) { %>
+              <li><a href="/admin/dashboard">Dashboard</a></li>
+              <li>
+                  <form action="/admin/logout" method="POST" style="display: inline;">
+                      <button type="submit" class="btn btn-secondary" style="padding: 0.25rem 0.5rem; font-size: 0.9rem;">Logout</button>
+                  </form>
+              </li>
+              <% } else { %>
+                  <li><a href="/admin/login">Admin Login</a></li>
+              <% } %>
+            </ul>
+        </nav>
+      </div>
+    </header>
