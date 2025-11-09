@@ -8,4 +8,8 @@ const route = express.Router();
 route.get("/", BlogController.home)
 // route.get("/article/:id")
 
+//Admin routes
+route.get("/admin/login", BlogController.loginPage)
+route.post("/admin/login", BlogController.login)
+
 export { route as Routers }
