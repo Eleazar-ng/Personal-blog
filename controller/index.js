@@ -32,13 +32,25 @@ export class BlogController {
       const year = BlogService.getCurrentYear();
       const { username, password } = req.body;
       if(username === ADMIN_USERNAME && password === ADMIN_PASSWORD){
-
+        req.session.isAuthenticated = true;
+        res.redirect("/admin");
       } else {
         res.render('admin/login', { error: 'Invalid login credentials!', year });
       }
     } catch (error) {
       console.error(error);
       res.status(500).send('Error processing login request')
+    }
+  }
+
+  static async dashboard(req,res){
+    try {
+      const articles = await BlogService.getAllArticles();
+      const year = BlogService.getCurrentYear();
+      res.render('admin/dashboard', { articles, year });
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Error loading dashboard');
     }
   }
 }
