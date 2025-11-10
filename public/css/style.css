@@ -58,6 +58,10 @@ main {
   min-height: calc(100vh - 140px);
 }
 
+.heading {
+  margin: 20px 0px;
+}
+
 /* Articles list */
 .article-card {
   background: white;
@@ -153,6 +157,24 @@ textarea.form-control {
 
 .btn-secondary:hover {
   background: #7f8c8d;
+}
+
+/* Dashboard */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* margin-bottom: 2rem; */
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.action-btn {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
 }
 
 /* Login form */
