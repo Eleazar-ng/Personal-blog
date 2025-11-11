@@ -53,4 +53,14 @@ export class BlogService {
     const year = new Date().getFullYear();
     return year
   }
+
+  static async saveArticle(article){
+    try {
+      const filename = path.join(ARTICLES_DIR, `${article.id}.json`);
+      await fs.writeFile(filename, JSON.stringify(article, null, 2));
+    } catch (error) {
+      console.error(error)
+      return null
+    }
+  }
 }

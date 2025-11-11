@@ -1,6 +1,7 @@
 
 import { ADMIN_PASSWORD, ADMIN_USERNAME } from "../config/auth.js";
 import { BlogService } from "../service/index.js";
+import { v4 as uuidv4 } from 'uuid';
 
 export class BlogController {
   //Guest
@@ -51,6 +52,33 @@ export class BlogController {
     } catch (error) {
       console.error(error);
       res.status(500).send('Error loading dashboard');
+    }
+  }
+
+  static async addArticlePage(req, res){
+    try {
+      const year = BlogService.getCurrentYear();
+      res.render("admin/new", { year })
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Error loading add new article page')
+    }
+  }
+
+  static async addArticle(req, res){
+    try {
+      const {title, publicationDate, content} = req.body;
+      const article = {
+        id: uuidv4(),
+        title,
+        publicationDate: publicationDate || new Date().toISOString().split('T')[0],
+        content
+      }
+      await BlogService.saveArticle(article);
+      res.redirect("/admin");
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Error processing new article request');
     }
   }
 }

@@ -13,6 +13,11 @@ route.get("/home", BlogController.home);
 //Admin routes
 route.get("/login", BlogController.loginPage);
 route.post("/login", BlogController.login);
+
 route.get("/admin",isAuthenticated, BlogController.dashboard);
+
+route.get("/new", isAuthenticated, BlogController.addArticlePage);
+route.post("/new", isAuthenticated, BlogController.addArticle);
+
 
 export { route as Routers }
