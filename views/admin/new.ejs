@@ -1,0 +1,28 @@
+<%- include('../shared/header', { title: 'Add Article'}) %>
+<main class="container">
+    <div class="form-container">
+        <h1>New Article</h1>
+        
+        <form action="/new" method="POST">
+            <div class="form-group">
+                <label for="title">Article Title:</label>
+                <input type="text" id="title" name="title" class="form-control" required placeholder="Article Title">
+            </div>
+            
+            <div class="form-group">
+                <label for="publicationDate">Publication Date:</label>
+                <input type="date" id="publicationDate" name="publicationDate" class="form-control" value="<%= new Date().toISOString().split('T')[0] %>">
+            </div>
+
+            <div class="form-group">
+                <label for="content">Content:</label>
+                <textarea id="content" name="content" class="form-control" required placeholder="Content"></textarea>
+            </div>
+            
+            <div class="actions">
+                <button type="submit" class="btn btn-success">Publish</button>
+            </div>
+        </form>
+    </div>
+</main>
+<%- include('../shared/footer', { currentYear: year }) %>

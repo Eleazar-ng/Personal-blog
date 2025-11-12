@@ -4,6 +4,8 @@ import * as fs from 'fs';
 import { fileURLToPath } from 'url';
 import express from "express";
 import { Routers } from "./route/index.js";
+import session from "express-session";
+import bodyParser from "body-parser";
 
 const app = express();
 const PORT = process.env.PORT || 8087;
@@ -12,7 +14,13 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 //Middleware
+app.use(bodyParser.urlencoded({extended: true}))
 app.use(express.static('public'));
+app.use(session({
+  secret: "7qEPP9NKHPkf0lkabJZQjXQdosg2PhUFJbBZY4zD99RJA8XQBv",
+  resave: false,
+  saveUninitialized: false
+}));
 
 // Set EJS as templating engine
 app.set('view engine', 'ejs');

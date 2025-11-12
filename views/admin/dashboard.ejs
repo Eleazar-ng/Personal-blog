@@ -1,0 +1,16 @@
+<%- include('../shared/header', { title: 'Dashboard'}) %>
+<main class="container">
+  <div class="dashboard-header">
+      <h1 class="heading">Personal Blog</h1>
+      <a href="/new" class="btn btn-success">Add New Article</a>
+  </div>
+    
+  <% if (articles.length === 0) { %>
+    <div class="article-card">
+        <p>No articles published yet. <a href="/new">Create your first article!</a></p>
+    </div>
+  <% } else { %>
+
+  <% } %>
+</main>
+<%- include('../shared/footer', { currentYear: year }) %>
