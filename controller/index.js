@@ -72,6 +72,7 @@ export class BlogController {
         id: uuidv4(),
         title,
         publicationDate: publicationDate || new Date().toISOString().split('T')[0],
+        createdAt: new Date(),
         content
       }
       await BlogService.saveArticle(article);
