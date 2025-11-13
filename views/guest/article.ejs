@@ -1,0 +1,14 @@
+<%- include('../shared/header', { title: article.title}) %>
+<main class="container">
+  <h1 class="heading"><%= article.title %></h1>
+  <div class="article-meta">
+    <%= article.formattedDate %>
+  </div>
+
+   <article class="article">
+    <div class="article-content">
+      <%= article.content.replace(/\n/g, '<br>') %>
+    </div>
+   </article>
+</main>
+<%- include('../shared/footer', { currentYear: year }) %>
