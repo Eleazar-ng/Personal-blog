@@ -8,7 +8,8 @@ const route = express.Router();
 //Guest routes
 route.get("/", BlogController.home);
 route.get("/home", BlogController.home);
-// route.get("/article/:id")
+
+route.get("/article/:id", BlogController.article);
 
 //Admin routes
 route.get("/login", BlogController.loginPage);

@@ -22,13 +22,8 @@ export class BlogService {
           if(file.endsWith('.json')){
             const parsedFile = await this.parseArticle(file);
             if(parsedFile){
-              const date = new Date(parsedFile.publicationDate);
-              const day = date.getDate();
-              const month = months[date.getMonth()];
-              const year = date.getFullYear()
-              const formattedDate = `${month} ${day}, ${year}`
-              parsedFile['formattedDate'] = formattedDate
-              articles.push(parsedFile);
+              const file = this.addFormattedDate(parsedFile)
+              articles.push(file);
             }
           }
         }
@@ -73,5 +68,31 @@ export class BlogService {
       console.error(error)
       return null
     }
+  }
+
+  static async getArticle(id){
+    try {
+      const content = await fs.readFile(path.join(ARTICLES_DIR, `${id}.json`), 'utf8');
+      const parsed = JSON.parse(content);
+      const file = this.addFormattedDate(parsed);
+      return file
+    } catch (error) {
+      console.error(error)
+      return null
+    }
+  }
+
+  static addFormattedDate(parsedFile){
+    const date = new Date(parsedFile.publicationDate);
+    const day = date.getDate();
+    const month = months[date.getMonth()];
+    const year = date.getFullYear()
+    const formattedDate = `${month} ${day}, ${year}`
+
+    const file = {
+      ...parsedFile, formattedDate
+    }
+
+    return file
   }
 }

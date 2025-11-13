@@ -15,6 +15,27 @@ export class BlogController {
       res.status(500).send('Error loading articles');
     }
   }
+
+  static async article(req, res){
+    try {
+      const { id } = req.params
+      if(!id){
+        console.error(`Error: ID is required`)
+        res.status(422).send('Id is required to fetch article');
+      }
+
+      const article = await BlogService.getArticle(id);
+      if(!article){
+        console.error(`Article not found`)
+        res.status(404).send('Could not find article');
+      }
+      const year = BlogService.getCurrentYear();
+      res.render('guest/article', { article, year });
+    } catch (error) {
+      console.error(error)
+      res.status(500).send('Error loading ');
+    }
+  }
   
 
   //Admin 
